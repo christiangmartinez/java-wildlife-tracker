@@ -70,4 +70,14 @@ public class SightingTest {
     assertTrue(Animal.find(999) == null);
   }
 
+  @Test
+  public void delete_deletesSightingFromDatabase() {
+    Animal testAnimal = new Animal("Deer");
+    testAnimal.save();
+    Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
+    testSighting.save();
+    testSighting.delete();
+    assertEquals(0, Sighting.all().size());
+  }
+
 }

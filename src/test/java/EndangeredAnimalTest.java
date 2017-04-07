@@ -64,4 +64,12 @@ public class EndangeredAnimalTest {
     assertEquals("Adult", EndangeredAnimal.find(testEndangeredAnimal.getId()).getAge());
   }
 
+  @Test
+  public void delete_deletesEnangeredAnimalFromDatabase() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    testEndangeredAnimal.save();
+    testEndangeredAnimal.delete();
+    assertEquals(0, EndangeredAnimal.all().size());
+  }
+
 }
