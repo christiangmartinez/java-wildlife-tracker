@@ -16,9 +16,18 @@ public class EndangeredAnimalTest {
   }
 
   @Test
-  public void getHealth_returnsHealthAttribute_true() {
+  public void getters_returnMemberVariables_true() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    assertEquals("Fox", testEndangeredAnimal.getName());
     assertEquals("Healthy", testEndangeredAnimal.getHealth());
+    assertEquals("Young", testEndangeredAnimal.getAge());
+  }
+
+  @Test
+  public void equals_returnsTrueIfNameIsTheSame_true() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    EndangeredAnimal otherEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    assertTrue(testEndangeredAnimal.equals(otherEndangeredAnimal));
   }
 
   @Test
@@ -70,6 +79,15 @@ public class EndangeredAnimalTest {
     testEndangeredAnimal.save();
     testEndangeredAnimal.delete();
     assertEquals(0, EndangeredAnimal.all().size());
+  }
+
+  @Test
+  public void getSightings_returnsAssociatedSighting() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    testEndangeredAnimal.save();
+    Sighting testSighting = new Sighting (testEndangeredAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
+    testSighting.save();
+    assertEquals(1, testEndangeredAnimal.getSightings().size());
   }
 
 }

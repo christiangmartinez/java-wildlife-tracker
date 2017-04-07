@@ -75,4 +75,13 @@ public class AnimalTest {
     assertTrue(Animal.find(999) == null);
   }
 
+  @Test
+  public void getSightings_returnsAssociatedSighting() {
+    Animal testAnimal = new Animal("Deer");
+    testAnimal.save();
+    Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
+    testSighting.save();
+    assertEquals(1, testAnimal.getSightings().size());
+  }
+
 }
