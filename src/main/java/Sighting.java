@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 
 public class Sighting implements DatabaseManagement{
   private int animal_id;
@@ -34,9 +35,14 @@ public class Sighting implements DatabaseManagement{
     return ranger_name;
   }
 
-  public Timestamp getSightingDate() {
+  public Timestamp getSightingTime() {
     return sighting_date;
   }
+
+  public String getSightingDate() {
+    return DateFormat.getDateTimeInstance().format(sighting_date);
+  }
+
 
   @Override
   public boolean equals(Object otherSighting) {

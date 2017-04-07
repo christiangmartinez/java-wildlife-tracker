@@ -45,9 +45,9 @@ public class SightingTest {
     testAnimal.save();
     Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
     testSighting.save();
-    Timestamp savedTestSightingDate = Sighting.find(testSighting.getId()).getSightingDate();
+    Timestamp savedTestSightingDate = Sighting.find(testSighting.getId()).getSightingTime();
     Timestamp rightNow = new Timestamp(new Date().getTime());
-    assertEquals(rightNow.getDay(), savedTestSightingDate.getDay());
+    assertEquals(DateFormat.getDateTimeInstance().format(rightNow.getDay()), DateFormat.getDateTimeInstance().format(savedTestSightingDate.getDay()));
   }
 
   @Test
